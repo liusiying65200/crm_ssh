@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    <hibernate-mapping>
+    	<class name="net.hualisheng.www.bean.Product" table="Product">
+    		<id name="pid">
+    			<generator class="uuid"></generator>
+    		</id>
+    		<property name="pname"></property>
+    		<property name="market_price"></property>
+    		<property name="shop_price"></property>
+    		<property name="pimage"></property>
+    		<property name="pdate"></property>
+    		<property name="is_hot"></property>
+    		<property name="pdesc"></property>
+    		<many-to-one name="category" cascade="save-update" column="cid" lazy="false" fetch="join" class="net.hualisheng.www.bean.Categroy"></many-to-one>
+    	</class>
+    </hibernate-mapping>

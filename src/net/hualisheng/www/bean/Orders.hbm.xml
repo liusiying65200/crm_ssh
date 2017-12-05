@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    <hibernate-mapping>
+    	<class name="net.hualisheng.www.bean.Orders" table="Orders">
+    		<id column="oid" name="oid">
+    			<generator class="uuid"></generator>
+    		</id>
+    		<property name="createTime"></property>
+    		<property name="status"></property>
+    		<property name="address"></property>
+    		<property name="name"></property>
+    		<property name="telephone"></property>
+    		<many-to-one name="user" class="net.hualisheng.www.bean.User" column="uid"></many-to-one>
+    		<set name="cartItems" cascade="save-update" fetch="join" lazy="false" >
+    			<key column="oid"></key>
+    			<one-to-many class="net.hualisheng.www.bean.CartItem" />
+    		</set>
+    	</class>
+    </hibernate-mapping>

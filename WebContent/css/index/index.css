@@ -1,0 +1,5 @@
+@CHARSET "UTF-8";
+#box{
+	margin: 200px auto;
+	border: 1px solid red; 
+}

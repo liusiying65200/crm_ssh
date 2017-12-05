@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    <hibernate-mapping>
+    	<class name="net.hualisheng.www.bean.CartItem" table="CartItem">
+    		<id column="itemid" name="itemid">
+    			<generator class="uuid"></generator>
+    		</id>
+    		<property name="scalar"></property>
+    		<property name="summation"></property>
+    		<many-to-one name="orders" class="net.hualisheng.www.bean.Orders" column="oid" cascade="save-update" fetch="join" lazy="false" ></many-to-one>
+    		<many-to-one name="product" class="net.hualisheng.www.bean.Product" column="pid" cascade="save-update" fetch="join" lazy="false"></many-to-one>
+    	</class>
+    </hibernate-mapping>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!-- #hibernate.dialect org.hibernate.dialect.MySQLDialect hibernate.connection.driver_class 
+			com.mysql.jdbc.Driver #hibernate.connection.url jdbc:mysql:///test #hibernate.connection.username 
+			gavin #hibernate.connection.password -->
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql:///20171124</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">root</property>
+		<!-- #hibernate.hbm2ddl.auto create-drop #hibernate.hbm2ddl.auto create 
+			#hibernate.hbm2ddl.auto update #hibernate.hbm2ddl.auto validate -->
+		<property name="hibernate.hbm2ddl.auto">update</property>
+
+		<property name="hibernate.format_sql">true</property>
+		<property name="hibernate.show_sql">true</property>
+
+		<!-- #hibernate.connection.provider_class org.hibernate.connection.DriverManagerConnectionProvider 
+			#hibernate.connection.provider_class org.hibernate.connection.DatasourceConnectionProvider 
+			#hibernate.connection.provider_class org.hibernate.connection.C3P0ConnectionProvider 
+			#hibernate.connection.provider_class org.hibernate.connection.ProxoolConnectionProvider -->
+		<property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+		
+		<!-- #hibernate.c3p0.max_size 2 #hibernate.c3p0.min_size 2 #hibernate.c3p0.timeout 
+			5000 #hibernate.c3p0.max_statements 100 #hibernate.c3p0.idle_test_period 
+			3000 #hibernate.c3p0.acquire_increment 2 #hibernate.c3p0.validate false -->
+		<property name="hibernate.c3p0.max_size">20</property>
+		<property name="hibernate.c3p0.min_size">2</property>
+		<property name="hibernate.c3p0.timeout">5000</property>
+		<property name="hibernate.c3p0.max_statements">100</property>
+		<property name="hibernate.c3p0.idle_test_period">3000</property>
+		<property name="hibernate.c3p0.acquire_increment">2</property>
+		<property name="hibernate.c3p0.validate">true</property>
+
+		<property name="hibernate.current_session_context_class">thread</property>
+		<property name="hibernate.temp.use_jdbc_metadata_defaults">false</property>
+
+		<mapping resource="net/hualisheng/www/bean/User.hbm.xml" />
+		<mapping resource="net/hualisheng/www/bean/CartItem.hbm.xml" />
+		<mapping resource="net/hualisheng/www/bean/Category.hbm.xml" />
+		<mapping resource="net/hualisheng/www/bean/Orders.hbm.xml" />
+		<mapping resource="net/hualisheng/www/bean/Product.hbm.xml" />
+	</session-factory>
+</hibernate-configuration>

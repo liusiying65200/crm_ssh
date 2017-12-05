@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"> <!-- bean definitions here -->
+	<bean id="userServiceImpl" class="net.hualisheng.www.services.impl.UserServiceImpl">
+	</bean>
+	<bean id="actionUser" class="net.hualisheng.www.web.actions.ActionUser"
+		scope="prototype">
+		<property name="service" ref="userServiceImpl"></property>
+	</bean>
+	<bean id="actionCategroy" class="net.hualisheng.www.web.actions.ActionCategroy">
+		<property name="service" ref="categroyServiceImpl"></property>
+	</bean>
+	<bean id="categroyServiceImpl" class="net.hualisheng.www.services.impl.CategroyServiceImpl">
+		<property name="dao" ref="categroyDaoImpl"></property>
+	</bean>
+	
+	<bean id="categroyDaoImpl" class="net.hualisheng.www.dao.impl.CategroyDaoImpl">
+		<property name="sessionFactory" ref="localSessionFactoryBean"></property>
+	</bean>
+	
+	<bean id="localSessionFactoryBean"
+	
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<!-- <property name="configLocations" value="classpath:hibernate.cfg.xml"></property> -->
+		<property name="dataSource" ref="dataSource"></property>
+		
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+			</props>
+		</property>
+		
+		<property name="mappingDirectoryLocations" value="classpath:net/hualisheng/www/bean"></property>
+	</bean>
+	
+	<context:property-placeholder location="classpath:jdbc.properties" />
+	
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="user" value="${user}"></property>
+		<property name="password" value="${password}"></property>
+		<property name="driverClass" value="${driverClass}"></property>
+		<property name="jdbcUrl" value="${jdbcUrl}"></property>
+	</bean>
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="localSessionFactoryBean"></property>
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+</beans>

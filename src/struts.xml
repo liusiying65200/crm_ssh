@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="test" extends="struts-default" namespace="/">
+		<global-results>
+			<result name="error">/WEB-INF/jsp/msg.jsp</result>
+		</global-results>
+		<action name="index_*" class="net.hualisheng.www.web.actions.ActionIndex"
+			method="{1}">
+			<result name="login" type="redirectAction">categroy_findAll</result>
+		</action>
+		<action name="home_*" class="net.hualisheng.www.web.actions.ActionHome"
+			method="{1}">
+			<result name="toLogin">/WEB-INF/jsp/login.jsp</result>
+			<result name="success">/WEB-INF/jsp/index.jsp</result>
+		</action>
+		<action name="user_*" class="actionUser" method="{1}">
+			<result name="login">/WEB-INF/jsp/index.jsp</result>
+		</action>
+		<action name="test_*" class="net.hualisheng.www.web.actions.ActionTest"></action>
+		<action name="categroy_*" class="actionCategroy" method="{1}">
+			<result name="success" type="redirectAction">home_toIndex</result>
+			<result name="showProduct_list">/WEB-INF/jsp/product_list.jsp</result>
+		</action>
+	</package>
+</struts>
